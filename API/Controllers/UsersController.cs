@@ -9,110 +9,137 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Model.Models;
+using API.Functions;
 
 namespace API.Controllers
 {
     public class UsersController : ApiController
-    {
-        private UserTweetContext db = new UserTweetContext();
-
+    {      
+        public IHttpActionResult Login(string userName, string passsword)
+        {
+            if(string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(passsword))
+            {
+                return BadRequest("Please enter username and password");
+            }
+            else
+            {
+                try
+                {
+                    UserFunctions user = new UserFunctions();
+                    int userId = user.GetUserIdByLogin(userName, passsword);
+                    if(userId > 0)
+                    {
+                        return Ok(userId);
+                    }
+                    else
+                    {
+                        return BadRequest("Please check username and password");
+                    }
+                    
+                }
+                catch (Exception ex)
+                {
+                    return InternalServerError(ex);
+                }
+            }
+        }
         // GET: api/Users
-        public IQueryable<User> GetUsers()
-        {
-            return db.Users;
-        }
+        //public IQueryable<User> GetUsers()
+        //{
+        //    return db.Users;
+        //}
 
-        // GET: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult GetUser(int id)
-        {
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
+        //// GET: api/Users/5
+        //[ResponseType(typeof(User))]
+        //public IHttpActionResult GetUser(int id)
+        //{
+        //    User user = db.Users.Find(id);
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(user);
-        }
+        //    return Ok(user);
+        //}
 
-        // PUT: api/Users/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutUser(int id, User user)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/Users/5
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutUser(int id, User user)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
+        //    if (id != user.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(user).State = EntityState.Modified;
+        //    db.Entry(user).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!UserExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-        // POST: api/Users
-        [ResponseType(typeof(User))]
-        public IHttpActionResult PostUser(User user)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST: api/Users
+        //[ResponseType(typeof(User))]
+        //public IHttpActionResult PostUser(User user)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.Users.Add(user);
-            db.SaveChanges();
+        //    db.Users.Add(user);
+        //    db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+        //}
 
-        // DELETE: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult DeleteUser(int id)
-        {
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Users/5
+        //[ResponseType(typeof(User))]
+        //public IHttpActionResult DeleteUser(int id)
+        //{
+        //    User user = db.Users.Find(id);
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.Users.Remove(user);
-            db.SaveChanges();
+        //    db.Users.Remove(user);
+        //    db.SaveChanges();
 
-            return Ok(user);
-        }
+        //    return Ok(user);
+        //}
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
-        private bool UserExists(int id)
-        {
-            return db.Users.Count(e => e.Id == id) > 0;
-        }
+        //private bool UserExists(int id)
+        //{
+        //    return db.Users.Count(e => e.Id == id) > 0;
+        //}
     }
 }
