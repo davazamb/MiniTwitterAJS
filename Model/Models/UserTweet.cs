@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Model.Models
 {
-    public class Tweet
+    public class UserTweet
     {
-        [Key]
-        public int Id { get; set; }
-        [Required]
+        public int TweetId { get; set; }
         public string Content { get; set; }
         public int UserId { get; set; }
-        [Required]
         public string Type { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
-        public int? ParentId { get; set; }
-        public User User { get; set; }
-
+        public int? ParentId { get; set; }   
+        public string Username { get; set; }   
+        public string Password { get; set; }     
+        public string FirstName { get; set; }   
+        public string LastName { get; set; }
     }
 }

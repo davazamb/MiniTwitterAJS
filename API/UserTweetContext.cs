@@ -18,4 +18,6 @@ public class UserTweetContext : DbContext
     }
 
     public System.Data.Entity.DbSet<Model.Models.User> Users { get; set; }
+
+    public System.Data.Entity.DbSet<Model.Models.Tweet> Tweets { get; set; }
 }
