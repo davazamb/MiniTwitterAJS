@@ -70,8 +70,9 @@
     <Content Include="app\app.js" />
     <Content Include="app\loginPage\login-page.component.js" />
     <Content Include="app\loginPage\loginPage.html" />
-    <Content Include="app\newsFeedPage\news-feed.component.js" />
-    <Content Include="app\newsFeedPage\newsFeedPage.html" />
+    <Content Include="app\newsFeedpage\news-feedpage.component.js" />
+    <Content Include="app\newsFeedpage\newsFeedpage.html" />
+    <Content Include="commonService\commonService.js" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\version.json" />

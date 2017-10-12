@@ -10,11 +10,15 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Model.Models;
 using API.Functions;
+using System.Web.Http.Cors;
 
 namespace API.Controllers
 {
+    [EnableCorsAttribute("http://localhost:56395/","*","*")]
     public class UsersController : ApiController
-    {      
+    {     
+        [HttpGet]
+        [Route("api/users/{username}/{password}")]
         public IHttpActionResult Login(string userName, string passsword)
         {
             if(string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(passsword))

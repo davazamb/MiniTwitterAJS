@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    var app = angular.module('app', ['ngRoute']);
+    var app = angular.module('app', ["commonService","ngResource","ngRoute"]);
     app.config(function ($routeProvider) {
         $routeProvider
             .when('/loginpage', {
@@ -9,6 +9,7 @@
             .when('/newsfeedpage', {
                 template: '<news-feedpage></news-feedpage>'
             })
-            .otherwise({redirecto:'/login'})   
+            .otherwise({ redirectTo: '/loginpage' })
+        
     })
 })();

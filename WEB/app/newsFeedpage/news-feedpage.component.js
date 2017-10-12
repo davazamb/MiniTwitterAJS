@@ -1,8 +1,8 @@
 ﻿(function () {
     'use strict'
     var app = angular.module('app');
-    app.component('newsFeedPage', {
-        templateUrl: 'app/newsFeedPage/newsFeedPage.html',
+    app.component('newsFeedpage', {
+        templateUrl: 'app/newsFeedpage/newsFeedpage.html',
         controllerAs: 'vm',
         controller: [controller]
     });

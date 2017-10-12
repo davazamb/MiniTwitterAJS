@@ -4,9 +4,12 @@
     app.component('loginPage', {
         templateUrl: 'app/loginPage/loginPage.html',
         controllerAs: 'vm',
-        controller: [controller]
+        controller: ["$location",controller]
     });
-    function controller() {
-
+    function controller($location) {
+        var vm = this;
+        vm.visit = function () {
+            $location.path('newsfeedpage/' + 'visitor');
+        }                                               
     }
 })();

@@ -1,1 +1,26 @@
-﻿<h1>Hola</h1>
+﻿<div class="container">
+    <div class="post-coments">
+        <form>
+            <div class="form-group">
+                <label for="comment">Your Post</label>
+                <textarea name="comment" id="postArea" ng-model="vm.postArea" class="form-control" rows="3"></textarea>  
+            </div>
+            <div class="row">
+                <button type="submit" ng-click="vm.submit(vm)" class="btn btn-primary">Send</button>
+                
+                <label style="margin-left:300px;">Filter by</label>
+                <select ng-model="vm.userName" ng-change="vm.filtration(vm)" style="margin-left:10px;width:200px">
+                    <option value="0">All</option>
+                    <option ng-repeat="z in vm.users" value={{z.id}}>{{z.firstName}} {{z.lastName}}</option>
+
+                </select>
+                <select ng-model="vm.postType" ng-change="vm.filtration(vm)" style="margin-left:2px;width:200px">
+                    <option>All</option>
+                    <option>Health</option>
+                    <option>Science</option>
+                    <option>Social</option>
+                </select>    
+            </div>  
+        </form>  
+    </div>   
+</div>
