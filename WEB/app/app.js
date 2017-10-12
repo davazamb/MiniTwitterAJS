@@ -6,7 +6,7 @@
             .when('/loginpage', {
                 template: '<login-page></login-page>'
             })
-            .when('/newsfeedpage', {
+            .when('/newsfeedpage/:id', {
                 template: '<news-feedpage></news-feedpage>'
             })
             .otherwise({ redirectTo: '/loginpage' })

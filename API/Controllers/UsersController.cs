@@ -19,9 +19,9 @@ namespace API.Controllers
     {     
         [HttpGet]
         [Route("api/users/{username}/{password}")]
-        public IHttpActionResult Login(string userName, string passsword)
+        public IHttpActionResult Login(string username, string passsword)
         {
-            if(string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(passsword))
+            if(string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(passsword))
             {
                 return BadRequest("Please enter username and password");
             }
@@ -30,7 +30,7 @@ namespace API.Controllers
                 try
                 {
                     UserFunctions user = new UserFunctions();
-                    int userId = user.GetUserIdByLogin(userName, passsword);
+                    int userId = user.GetUserIdByLogin(username, passsword);
                     if(userId > 0)
                     {
                         return Ok(userId);
